@@ -28,12 +28,25 @@ class App extends Component {
       picture: event.target.value,
     })
   }
-  
+
+  addFriend() {
+    const newFriend = {
+      name: this.state.name,
+      picture: this.state.picture,
+    };
+    this.setState({
+      friends: this.state.friends.concat(newFriend),
+      name: '',
+      picture: ''
+    });
+  }
+
   render() {
     return (
       <div>
         Name: <input value={this.state.name} onChange={(event) => this.changeName(event.target.value)} />
         Picture: <input value={this.state.picture} onChange={(event) => this.changePicture(event)} />
+        <button onClick={() => this.addFriend()}>Add friend</button>
         <div>
           {this.state.friends.map(friend => {
             return (
